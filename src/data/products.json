@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Remera Nike",
+    "description": "Remera deportiva",
+    "code": "pgm232",
+    "price": 250,
+    "status": true,
+    "stock": 10,
+    "category": "remeras",
+    "thumbnail": ""
+  },
+  {
+    "id": 3,
+    "title": "agua",
+    "description": "bebida sin alcohol de 500ml",
+    "price": 1500,
+    "thumbnail": "",
+    "code": "awa225",
+    "stock": 24
+  }
+]
