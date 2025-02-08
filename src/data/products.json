@@ -11,12 +11,21 @@
     "thumbnail": ""
   },
   {
-    "id": 3,
-    "title": "agua",
-    "description": "bebida sin alcohol de 500ml",
-    "price": 1500,
+    "id": 2,
+    "title": "Bidon de vino",
+    "description": "Bidon de vino 3L",
+    "price": "2500",
     "thumbnail": "",
-    "code": "awa225",
-    "stock": 24
+    "code": "vin335",
+    "stock": "9"
+  },
+  {
+    "title": "prueba",
+    "description": "v",
+    "price": 15,
+    "thumbnail": "",
+    "code": "d",
+    "stock": 1,
+    "id": 3
   }
 ]

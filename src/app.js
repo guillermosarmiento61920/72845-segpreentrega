@@ -1,24 +1,57 @@
 import express from "express";
+import { Server } from "socket.io";
+import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
 import productsRouter from "./routes/products.router.js";
-import cartRouter from "./routes/cart.router.js";
+import viewsRouter from "./routes/views.router.js";
+import { engine } from "express-handlebars";
+import ProductManager from "./ProductManager.js";
 
-// app express y puerto
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const PORT = 8080;
+const server = http.createServer(app); // Crear servidor HTTP
+const io = new Server(server); // WebSockets
 
-//habilitamos poder recibir json y urlencoded
+const productManager = new ProductManager("./data/products.json")
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../public"))); // Corregir ruta a "public"
 
-//endpoints
-app.use("/products", productsRouter);
-app.use("/cart", cartRouter);
+// Configuración Handlebars
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views")); // Corregir ruta a "views"
 
-app.get("/", (req, res) => {
-  res.send("Bienvenidos");
+// Middleware para pasar `io` a las rutas
+app.use((req, res, next) => {
+  req.io = io;
+  next();
 });
 
-//inicio del servidor en puerto 8080
-app.listen(PORT, () =>
-  console.log(`Servidor iniciado en: http://localhost:${PORT}`)
-);
+// Rutas
+app.use("/products", productsRouter);
+app.use("/", viewsRouter);
+
+io.on("connection", (socket) => {
+  console.log("🟢 Nuevo cliente conectado");
+
+  socket.on('nuevoProducto', producto => {
+    productManager.agregarProducto(producto);
+    io.emit('actualizarProductos', productManager.getProductos());
+});
+
+socket.on('eliminarProducto', id => {
+    productManager.eliminarProducto(id);
+    io.emit('actualizarProductos', productManager.getProductos());
+});
+});
+
+const PORT = 8080;
+server.listen(PORT, () => {
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+});
