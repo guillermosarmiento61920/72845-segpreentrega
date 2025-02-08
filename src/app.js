@@ -7,6 +7,7 @@ import productsRouter from "./routes/products.router.js";
 import viewsRouter from "./routes/views.router.js";
 import { engine } from "express-handlebars";
 import ProductManager from "./ProductManager.js";
+import cartRouter from "./routes/cart.router.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 // Rutas
 app.use("/products", productsRouter);
 app.use("/", viewsRouter);
+app.use("/cart", cartRouter);
 
 io.on("connection", (socket) => {
   console.log("Nuevo cliente conectado");
