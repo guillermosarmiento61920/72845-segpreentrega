@@ -27,5 +27,14 @@
     "code": "d",
     "stock": 1,
     "id": 3
+  },
+  {
+    "title": "gaseosa",
+    "description": "con gas",
+    "price": 1500,
+    "thumbnail": "",
+    "code": "gas100",
+    "stock": 35,
+    "id": 4
   }
 ]

@@ -6,7 +6,7 @@ class CartManager {
     this.carts = [];
   }
 
-  // Guardar carritos en el archivo
+  // guardar carritos en el archivo
   saveCarts = async () => {
     try {
       await fs.promises.writeFile(

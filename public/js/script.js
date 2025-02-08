@@ -1,10 +1,10 @@
 const socket = io();
 
-// Ejemplo de agregar un producto
+// ejemplo de agregar products
 document.getElementById("agregarProducto").addEventListener("click", () => {
   const nuevoProducto = {
-    title: "Producto Nuevo",
-    description: "Descripción",
+    title: "producto nuevo",
+    description: "descripción",
     price: 100,
     code: "ABC123",
     stock: 10,
@@ -12,8 +12,7 @@ document.getElementById("agregarProducto").addEventListener("click", () => {
   socket.emit("nuevoProducto", nuevoProducto);
 });
 
-// Ejemplo de eliminar un producto
 document.getElementById("eliminarProducto").addEventListener("click", () => {
-  const idProducto = 1; // Cambiar por el ID real
+  const idProducto = 1;
   socket.emit("eliminarProducto", idProducto);
 });

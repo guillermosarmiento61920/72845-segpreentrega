@@ -6,7 +6,7 @@ const cartRouter = express.Router();
 //instanciamos el manejador de nuestro archivo de carrito
 const cartManager = new CartManager("./src/data/cart.json");
 
-//POST "/"
+//POST /
 cartRouter.post("/", async (req, res) => {
   try {
     const newCart = await cartManager.addCart();
@@ -16,7 +16,7 @@ cartRouter.post("/", async (req, res) => {
   }
 });
 
-//GET "/:cid"
+//GET /:cid
 cartRouter.get("/:cid", async (req, res) => {
   try {
     const cart = await cartManager.getCartById(parseInt(req.params.cid));
@@ -26,7 +26,7 @@ cartRouter.get("/:cid", async (req, res) => {
   }
 });
 
-//POST "/:cid/product/:pid"
+//POST /:cid/product/:pid
 cartRouter.post("/:cid/product/:pid", async (req, res) => {
   try {
     const cart = await cartManager.addProductInCartById(

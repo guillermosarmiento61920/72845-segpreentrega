@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const router = Router();
 const productManager = new ProductManager(path.join(__dirname, "../data/products.json"));
 
-// Agregar producto
+// para agregar producto
 router.post("/", async (req, res) => {
   try {
     const newProduct = await productManager.addProduct(req.body);
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Eliminar producto por ID
+// para eliminar producto
 router.delete("/:id", async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -32,4 +32,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-export default router; // ✅ Asegurar la exportación
+export default router;

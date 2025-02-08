@@ -22,14 +22,12 @@ router.get("/", async (req, res) => {
 router.get("/realtimeproducts", async (req, res) => {
   try {
     const productos = await productManager.getProducts();
-    console.log("Productos enviados a la vista:", productos); // 👈 Verifica en consola
     res.render("realTimeProducts", { productos });
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
 });
 
-// Nueva ruta para la vista de productos
 router.get("/products", async (req, res) => {
   try {
     const productos = await productManager.getProducts();
@@ -39,4 +37,4 @@ router.get("/products", async (req, res) => {
   }
 });
 
-export default router; // ✅ Asegurar la exportación
+export default router;

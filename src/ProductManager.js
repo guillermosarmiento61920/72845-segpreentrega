@@ -28,7 +28,7 @@ class ProductManager {
     try {
       // Verificar si el archivo existe antes de leerlo
       await fs.access(this.path).catch(async () => {
-        await fs.writeFile(this.path, "[]", "utf8"); // Si no existe, lo crea vacío
+        await fs.writeFile(this.path, "[]", "utf8");
       });
   
       const data = await fs.readFile(this.path, "utf8");

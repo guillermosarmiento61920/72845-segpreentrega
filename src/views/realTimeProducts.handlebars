@@ -34,7 +34,7 @@
       stock: parseInt(document.getElementById("stock").value),
     };
 
-    console.log("📤 Enviando producto al servidor:", producto);
+    console.log("enviando producto al servidor:", producto);
 
     const response = await fetch("/products", {
       method: "POST",
@@ -43,12 +43,12 @@
     });
 
     const data = await response.json();
-    console.log("📩 Respuesta del servidor:", data);
+    console.log("servidor responde:", data);
   });
 
   async function eliminarProducto(id) {
     try {
-    console.log("🗑 Eliminando producto ID:", id);
+    console.log("eliminando producto ID:", id);
     const response = await fetch(`/products/${id}`, {
       method: "DELETE",
     });
@@ -58,17 +58,17 @@
     }
 
     const data = await response.json();
-    console.log("📩 Respuesta del servidor tras eliminar:", data);
+    console.log("respuesta tras eliminar:", data);
   } catch (error) {
-    console.error("❌ Error al eliminar producto:", error.message);
+    console.error("Error al eliminar producto:", error.message);
   }
 }
 
   socket.on("actualizarProductos", (productos) => {
-    console.log("📡 Recibida actualización de productos:", productos);
+    console.log("actualización de productos:", productos);
 
     const productList = document.getElementById("product-list");
-    productList.innerHTML = ""; // Limpiar la lista antes de actualizar
+    productList.innerHTML = "";
 
     productos.forEach((producto) => {
       const item = document.createElement("li");
